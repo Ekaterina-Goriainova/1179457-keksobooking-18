@@ -5,16 +5,16 @@ var offersNearby = 8;
 var types = ['palace', 'flat', 'house', 'bungalo'];
 var checkTimes = ['12:00', '13:00', '14:00'];
 var features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-var pfotos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+var photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 var mapPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 var mapPins = document.querySelector('.map__pins');
 
-var getRandomElementFromArray = function(arr) {
+var getRandomElementFromArray = function (arr) {
   return arr[Math.round((arr.length - 1) * Math.random())];
 };
 
-var createRandomLengthArray  = function(arr) {
+var createRandomLengthArray = function (arr) {
   var randomArr = [];
 
   for (var i = 0; i < arr.length - 1; i++) {
@@ -23,7 +23,7 @@ var createRandomLengthArray  = function(arr) {
   return randomArr;
 };
 
-var createOffersArray = function(count) {
+var createOffersArray = function (count) {
   var offersArray = [];
 
   for (var i = 1; i < count; i++) {
@@ -66,7 +66,7 @@ var renderPin = function (offer) {
   return pinElement;
 };
 
-var createPins = function(arr) {
+var createPins = function (arr) {
   var fragment = document.createDocumentFragment();
 
   for (var i = 0; i < arr.length; i++) {
