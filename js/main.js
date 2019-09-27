@@ -18,7 +18,9 @@ var createRandomLengthArray  = function(arr) {
   var randomArr = [];
 
   for (var i = 0; i < arr.length - 1; i++) {
-    var pushToArr = (pushToArr) ? (Math.round(Math.random()) : randomArr.push(arr[i]);
+	var pushToArr = Boolean(Math.round(Math.random());
+    if (pushToArr) {
+      randomArr.push(arr[i]);
     }
   }
   return randomArr;
