@@ -1,6 +1,9 @@
 'use strict';
 
-var offersNearby = 8;
+var OFFERS_NEARBY = 8;
+var TITLE = 'Title';
+var ADDRESS = '600, 350';
+var PRICE = 1000;
 
 var types = ['palace', 'flat', 'house', 'bungalo'];
 var checkTimes = ['12:00', '13:00', '14:00'];
@@ -32,9 +35,9 @@ var createOffersArray = function (count) {
         avatar: 'img/avatars/user0' + i + '.png'
       },
       offer: {
-        title: 'Title',
-        address: '600, 350',
-        price: 1000,
+        title: TITLE,
+        address: ADDRESS,
+        price: PRICE,
         type: getRandomElementFromArray(types),
         rooms: createRandomLengthArray,
         guests: 2 * createRandomLengthArray,
@@ -80,5 +83,5 @@ var map = document.querySelector('.map');
 
 map.classList.remove('map--faded');
 
-var offers = createOffersArray(offersNearby);
+var offers = createOffersArray(OFFERS_NEARBY);
 createPins(offers);
