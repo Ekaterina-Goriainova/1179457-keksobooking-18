@@ -9,8 +9,7 @@
     offset: 32,
     offsetPin: 22
   };
-
-  // минимальная цена по типу жилья
+  
   var TYPE_PRICE = {
     'palace': 10000,
     'flat': 1000,
@@ -27,7 +26,6 @@
       window.map.makeSiteActive();
     }
   });
-
   var setFieldset = document.querySelectorAll('fieldset');
   var apartmentTimeIn = document.querySelector('#timein');
   var apartmentTimeOut = document.querySelector('#timeout');
