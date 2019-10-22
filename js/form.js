@@ -9,7 +9,7 @@
     offset: 32,
     offsetPin: 22
   };
-  
+
   var TYPE_PRICE = {
     'palace': 10000,
     'flat': 1000,
