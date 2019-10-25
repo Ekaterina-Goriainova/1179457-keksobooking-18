@@ -32,7 +32,7 @@
       if (evt.keyCode === KEY_ENTER) {
         window.card.markupCard(pins);
       }
-    }; 
+    };
     pinElement.addEventListener('keydown', onPinEnter);
 
     return pinElement;
