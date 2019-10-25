@@ -8,6 +8,7 @@
 
   var onSuccess = function (pins) {
     window.pin.markupPin(pins);
+    window.card.markupCard(pins);
   };
 
   var onError = function (errorText) {

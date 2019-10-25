@@ -56,6 +56,7 @@
       numberRooms.setCustomValidity('');
     }
   };
+
   var onApartmentTypeChange = function () {
     var selectedType = apartmentType.value;
     var minPrice = TYPE_PRICE[selectedType];
@@ -71,6 +72,7 @@
       numberGuests.value = '0';
     }
   };
+
   var getMainAddress = function () {
     var pinMainX = mainPin.style.left;
     var pinMainY = mainPin.style.top;
