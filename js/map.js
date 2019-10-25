@@ -8,7 +8,6 @@
 
   var onSuccess = function (pins) {
     window.pin.markupPin(pins);
-    window.card.markupCard(pins);
   };
 
   var onError = function (errorText) {
@@ -58,6 +57,7 @@
 
   window.map = {
     mapActive: mapActive,
-    makeSiteActive: makeSiteActive
+    makeSiteActive: makeSiteActive,
+    KEY_ESC: KEY_ESC
   };
 })();
