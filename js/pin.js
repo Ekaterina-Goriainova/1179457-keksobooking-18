@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var KEY_ENTER = 13;
-
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
   var similarPins = document.querySelector('.map__pins');
   var fragment = document.createDocumentFragment();
@@ -19,7 +17,6 @@
 
     var onPinClick = function (evt) {
       evt.preventDefault();
-      pinElement.removeEventListener('keydown', onPinClick);
 
       window.card.markupCard(pins);
     };
@@ -29,7 +26,7 @@
       evt.preventDefault();
       pinElement.removeEventListener('keydown', onPinEnter);
 
-      if (evt.keyCode === KEY_ENTER) {
+      if (evt.keyCode === window.util.KEY_ENTER) {
         window.card.markupCard(pins);
       }
     };
