@@ -86,7 +86,7 @@
     return cardElement;
   };
 
-  var markupCardDelite = function () {
+  var markupCardDelete = function () {
     var cardPresent = document.querySelector('.map__card');
     if (cardPresent) {
       cardPresent.remove();
@@ -94,12 +94,12 @@
   };
 
   var markupCard = function (pins) {
-    markupCardDelite();
+    markupCardDelete();
     parentElement.insertBefore(renderCard(pins), similarCard);
   };
 
   window.card = {
-    markupCardDelite: markupCardDelite,
+    markupCardDelete: markupCardDelete,
     markupCard: markupCard,
     similarCard: similarCard,
     renderCard: renderCard,
