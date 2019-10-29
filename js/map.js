@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var KEY_ESC = 27;
-
   var mapActive = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
 
@@ -10,19 +8,19 @@
     window.pin.markupPin(pins);
   };
 
+  var blockMain = document.querySelector('main');
   var onError = function (errorText) {
     var msgErrorTemplate = document.querySelector('#error').content.querySelector('.error');
     var errorElement = msgErrorTemplate.cloneNode(true);
-    var blockMain = document.querySelector('main');
+    // var blockMain = document.querySelector('main');
     var msgError = errorElement.querySelector('.error__message');
     msgError.innerHTML = errorText;
 
-    // элемент error создается в блоке main, по тз
     blockMain.insertBefore(errorElement, blockMain.children[0]);
 
     var clickESC = function (evt) {
       evt.preventDefault();
-      if (evt.keyCode === KEY_ESC) {
+      if (evt.keyCode === window.util.KEY_ESC) {
         errorElement.remove();
         document.removeEventListener('keydown', clickESC);
       }
@@ -56,8 +54,9 @@
   };
 
   window.map = {
+    adForm: adForm,
+    blockMain: blockMain,
     mapActive: mapActive,
-    makeSiteActive: makeSiteActive,
-    KEY_ESC: KEY_ESC
+    makeSiteActive: makeSiteActive
   };
 })();

@@ -13,6 +13,7 @@
     'house': 5000,
     'bungalo': 0
   };
+  var MAX_PRICE = 100000;
   var mapRestrict = {
     X: {
       MIN: 0,
@@ -23,6 +24,16 @@
       MAX: 630
     }
   };
+
+  var DEFAULT_MAINPIN = {
+    X: 602,
+    Y: 407
+  };
+
+  var onFormFocus = function () {
+    window.card.markupCardDelete();
+  };
+  document.querySelector('.notice').addEventListener('focus', onFormFocus, true);
 
   var mainPin = document.querySelector('.map__pin--main');
 
@@ -35,8 +46,13 @@
     mainPin.removeEventListener('mousedown', listenerMainPin, false);
     mainPin.removeEventListener('keydown', listenerMainPin, false);
   };
-  mainPin.addEventListener('mousedown', listenerMainPin, false);
-  mainPin.addEventListener('keydown', listenerMainPin, false);
+
+  var setMainPinListener = function () {
+    mainPin.addEventListener('mousedown', listenerMainPin, false);
+    mainPin.addEventListener('keydown', listenerMainPin, false);
+  };
+
+  setMainPinListener();
 
   var setFieldset = document.querySelectorAll('fieldset');
   var apartmentTimeIn = document.querySelector('#timein');
@@ -73,7 +89,7 @@
     var minPrice = TYPE_PRICE[selectedType];
     apartmentPrice.setAttribute('placeholder', minPrice);
     apartmentPrice.setAttribute('min', minPrice);
-    apartmentPrice.setAttribute('max', 1000000);
+    apartmentPrice.setAttribute('max', MAX_PRICE);
   };
 
   var setGuestNumber = function () {
@@ -103,7 +119,7 @@
     mainPinAddress.setAttribute('value', pinMainX + ', ' + pinMainY);
     mainPinAddress.setAttribute('readonly', 'true');
   };
-  var setFormDesabled = function () {
+  var setFormDisabled = function () {
     for (var j = 0; j < setFieldset.length; j++) {
       setFieldset[j].setAttribute('disabled', 'disabled');
     }
@@ -115,8 +131,63 @@
   apartmentTimeIn.addEventListener('change', onTimeInChange);
   apartmentTimeOut.addEventListener('change', onTimeOutChange);
   apartmentType.addEventListener('change', onApartmentTypeChange);
-  setFormDesabled();
+  setFormDisabled();
 
+  var successMsgTemp = document.querySelector('#success').content.querySelector('.success');
+  var errorMsgTemp = document.querySelector('#error').content.querySelector('.error');
+  var formSubmit = document.querySelector('.ad-form');
+
+  formSubmit.addEventListener('submit', function (evt) {
+    window.load.sendData(onSuccessSubmit, onErrorSubmit, new FormData(formSubmit));
+    evt.preventDefault();
+  });
+
+  var onMessageCall = function (msgTemp) {
+    var cloneElement = msgTemp.cloneNode(true);
+    window.map.blockMain.insertBefore(cloneElement, window.map.blockMain.children[0]);
+
+    var onMessageSubmit = function (evt) {
+      var onSubmit = function () {
+        evt.preventDefault();
+        cloneElement.remove();
+      };
+      if (evt.keyCode === window.util.KEY_ESC) {
+        onSubmit(cloneElement);
+        document.removeEventListener('keydown', onMessageSubmit);
+      }
+      onSubmit(cloneElement);
+    };
+
+    document.addEventListener('keydown', onMessageSubmit);
+    cloneElement.addEventListener('mousedown', onMessageSubmit);
+  };
+
+  var onSuccessSubmit = function () {
+    onMessageCall(successMsgTemp);
+    makeSiteReset();
+  };
+  var onErrorSubmit = function () {
+    onMessageCall(errorMsgTemp);
+  };
+
+  var userForm = document.querySelector('.ad-form');
+  var mapForm = document.querySelector('.map__filters');
+
+  var makeSiteReset = function () {
+    var pinList = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    var pinListArray = Array.from(pinList);
+    userForm.reset();
+    mapForm.reset();
+    for (var i = 0; i < pinListArray.length; i++) {
+      pinListArray[i].remove();
+    }
+    window.map.adForm.classList.add('ad-form--disabled');
+    window.map.mapActive.classList.add('map--faded');
+    setFormDisabled();
+    mainPin.style = ('left: ' + (DEFAULT_MAINPIN.X - PIN_MAIN.offset) + 'px; top: ' + (DEFAULT_MAINPIN.Y - PIN_MAIN.offset) + 'px;');
+    mainPinAddress.setAttribute('value', DEFAULT_MAINPIN.X + ', ' + DEFAULT_MAINPIN.Y);
+    setMainPinListener();
+  };
 
   mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -128,7 +199,7 @@
 
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
-      window.card.markupCardDelite();
+      window.card.markupCardDelete();
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -181,6 +252,6 @@
     apartmentPrice: apartmentPrice,
     getMainAddress: getMainAddress,
     setFieldset: setFieldset,
-    setFormDesabled: setFormDesabled
+    setFormDisabled: setFormDisabled
   };
 })();
