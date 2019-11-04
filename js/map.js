@@ -1,18 +1,20 @@
 'use strict';
 
 (function () {
+  var pinsData = [];
   var mapActive = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
 
   var onSuccess = function (pins) {
-    window.pin.markupPin(pins);
+    pinsData = pins;
+    window.pin.markupPin(pinsData.slice(0, PINS_MAX));
+    return pinsData;
   };
 
   var blockMain = document.querySelector('main');
   var onError = function (errorText) {
     var msgErrorTemplate = document.querySelector('#error').content.querySelector('.error');
     var errorElement = msgErrorTemplate.cloneNode(true);
-    // var blockMain = document.querySelector('main');
     var msgError = errorElement.querySelector('.error__message');
     msgError.innerHTML = errorText;
 
@@ -52,6 +54,39 @@
     window.form.apartmentPrice.setAttribute('required', 'true');
     window.form.setGuestNumber();
   };
+
+  // Отображение 5-ти меток
+
+  var PINS_MAX = 5;
+
+  var mapFilters = document.querySelector('.map__filters');
+  var selectorType = mapFilters.querySelector('#housing-type');
+  var markupPinsDelete = function () {
+    var pinList = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    var pinListArray = Array.from(pinList);
+    for (var i = 0; i < pinListArray.length; i++) {
+      pinListArray[i].remove();
+    }
+  };
+
+  var onTypeChange = function () {
+    var filteredPins = pinsData.filter(function (filteredData) {
+      markupPinsDelete();
+      window.card.markupCardDelete();
+      if (selectorType.value === 'any') {
+        window.pin.markupPin(pinsData.slice(0, PINS_MAX));
+      }
+      return filteredData.offer.type === selectorType.value;
+    });
+
+    window.pin.markupPin(filteredPins.slice(0, PINS_MAX));
+
+    return filteredPins;
+  };
+
+  selectorType.addEventListener('change', onTypeChange);
+
+  //
 
   window.map = {
     adForm: adForm,
