@@ -54,7 +54,7 @@
     window.form.apartmentPrice.setAttribute('required', 'true');
     window.form.setGuestNumber();
   };
- 
+
   // Отображение 5-ти меток
 
   var PINS_MAX = 5;
@@ -85,8 +85,8 @@
   };
 
   selectorType.addEventListener('change', onTypeChange);
-  
- //
+
+  //
 
   window.map = {
     adForm: adForm,
