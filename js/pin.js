@@ -18,7 +18,7 @@
     var onPinClick = function (evt) {
       evt.preventDefault();
 
-      window.card.markupCard(pins);
+      window.card.markUpCard(pins);
     };
     pinElement.addEventListener('click', onPinClick);
 
@@ -27,7 +27,7 @@
       pinElement.removeEventListener('keydown', onPinEnter);
 
       if (evt.keyCode === window.util.KEY_ENTER) {
-        window.card.markupCard(pins);
+        window.card.markUpCard(pins);
       }
     };
     pinElement.addEventListener('keydown', onPinEnter);
@@ -35,7 +35,7 @@
     return pinElement;
   };
 
-  var markupPin = function (pins) {
+  var markUpPin = function (pins) {
     for (var i = 0; i < pins.length; i++) {
       fragment.appendChild(renderPin(pins[i]));
     }
@@ -44,7 +44,7 @@
 
   window.pin = {
     fragment: fragment,
-    markupPin: markupPin,
+    markUpPin: markUpPin,
     renderPin: renderPin,
     similarPins: similarPins
   };

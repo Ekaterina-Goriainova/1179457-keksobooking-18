@@ -86,21 +86,21 @@
     return cardElement;
   };
 
-  var markupCardDelete = function () {
+  var markUpCardDelete = function () {
     var cardPresent = document.querySelector('.map__card');
     if (cardPresent) {
       cardPresent.remove();
     }
   };
 
-  var markupCard = function (pins) {
-    markupCardDelete();
+  var markUpCard = function (pins) {
+    markUpCardDelete();
     parentElement.insertBefore(renderCard(pins), similarCard);
   };
 
   window.card = {
-    markupCardDelete: markupCardDelete,
-    markupCard: markupCard,
+    markUpCardDelete: markUpCardDelete,
+    markUpCard: markUpCard,
     similarCard: similarCard,
     renderCard: renderCard,
     parentElement: parentElement

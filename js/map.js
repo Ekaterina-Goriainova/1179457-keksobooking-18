@@ -9,7 +9,7 @@
 
   var onSuccess = function (pins) {
     pinsData = pins;
-    window.pin.markupPin(pinsData.slice(0, PINS_MAX));
+    window.pin.markUpPin(pinsData.slice(0, PINS_MAX));
     return pinsData;
   };
 
@@ -21,7 +21,7 @@
     return filteredPins.slice(0, PINS_MAX);
   };
 
-  var markupPinsDelete = function () {
+  var markUpPinsDelete = function () {
     var pinList = document.querySelectorAll('.map__pin:not(.map__pin--main)');
     var pinListArray = Array.from(pinList);
     for (var i = 0; i < pinListArray.length; i++) {
@@ -30,9 +30,9 @@
   };
 
   var onOffersReload = function () {
-    markupPinsDelete();
-    window.card.markupCardDelete();
-    window.pin.markupPin(setSelectedFilters());
+    markUpPinsDelete();
+    window.card.markUpCardDelete();
+    window.pin.markUpPin(setSelectedFilters());
   };
 
   window.filter.mapFilters.addEventListener('change', function (evt) {
@@ -51,11 +51,11 @@
 
     blockMain.insertBefore(errorElement, blockMain.children[0]);
 
-    var clickESC = function (evt) {
+    var clickEsc = function (evt) {
       evt.preventDefault();
       if (evt.keyCode === window.util.KEY_ESC) {
         errorElement.remove();
-        document.removeEventListener('keydown', clickESC);
+        document.removeEventListener('keydown', clickEsc);
       }
     };
 
@@ -65,7 +65,7 @@
       document.removeEventListener('mousedown', clickMouse);
     };
 
-    document.addEventListener('keydown', clickESC);
+    document.addEventListener('keydown', clickEsc);
     document.addEventListener('mousedown', clickMouse);
   };
 

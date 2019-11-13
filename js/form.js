@@ -14,6 +14,10 @@
     'bungalo': 0
   };
   var MAX_PRICE = 100000;
+  var DEFAULT_MAINPIN = {
+    X: 602,
+    Y: 407
+  };
   var mapRestrict = {
     X: {
       MIN: 0,
@@ -25,13 +29,8 @@
     }
   };
 
-  var DEFAULT_MAINPIN = {
-    X: 602,
-    Y: 407
-  };
-
   var onFormFocus = function () {
-    window.card.markupCardDelete();
+    window.card.markUpCardDelete();
   };
   document.querySelector('.notice').addEventListener('focus', onFormFocus, true);
 
@@ -199,7 +198,7 @@
 
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
-      window.card.markupCardDelete();
+      window.card.markUpCardDelete();
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
