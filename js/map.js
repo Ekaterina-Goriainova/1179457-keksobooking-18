@@ -51,22 +51,22 @@
 
     blockMain.insertBefore(errorElement, blockMain.children[0]);
 
-    var clickEsc = function (evt) {
+    var onClickEsc = function (evt) {
       evt.preventDefault();
       if (evt.keyCode === window.util.KEY_ESC) {
         errorElement.remove();
-        document.removeEventListener('keydown', clickEsc);
+        document.removeEventListener('keydown', onClickEsc);
       }
     };
 
-    var clickMouse = function (evt) {
+    var onClickMouse = function (evt) {
       evt.preventDefault();
       errorElement.remove();
-      document.removeEventListener('mousedown', clickMouse);
+      document.removeEventListener('mousedown', onClickMouse);
     };
 
-    document.addEventListener('keydown', clickEsc);
-    document.addEventListener('mousedown', clickMouse);
+    document.addEventListener('keydown', onClickEsc);
+    document.addEventListener('mousedown', onClickMouse);
   };
 
   var setFormEnabled = function () {

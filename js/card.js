@@ -19,7 +19,7 @@
     var cardAvatar = cardElement.querySelector('.popup__avatar');
     var cardCloseBtn = cardElement.querySelector('.popup__close');
 
-    var types = {
+    var TypeOffers = {
       palace: 'Дворец',
       flat: 'Квартира',
       house: 'Дом',
@@ -29,7 +29,7 @@
     cardTitle.textContent = pins.offer.title;
     cardAddress.textContent = pins.offer.address;
     cardPrice.textContent = pins.offer.price + ' \u20bd/ночь ';
-    cardType.textContent = types[pins.offer.type];
+    cardType.textContent = TypeOffers[pins.offer.type];
     cardCapacity.textContent = pins.offer.rooms + ' комнат' + ((pins.offer.rooms > 1 && pins.offer.rooms < 4) ? 'ы' : 'а') + ' для ' + pins.offer.guests + ' гост' + ((pins.offer.guests > 1 && pins.offer.guests < 100) ? 'ей' : 'я');
     cardTime.textContent = ('Заезд после ' + pins.offer.checkin + ', выезд до ' + pins.offer.checkout);
     cardDescription.textContent = pins.offer.description;
