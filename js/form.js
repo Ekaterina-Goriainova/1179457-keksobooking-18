@@ -18,7 +18,7 @@
     X: 602,
     Y: 407
   };
-  var mapRestrict = {
+  var MapRestrict = {
     X: {
       MIN: 0,
       MAX: 1200
@@ -214,10 +214,10 @@
         y: mainPin.offsetTop - shift.y
       };
       var MapField = {
-        minX: mapRestrict.X.MIN - PIN_MAIN.width / 2,
-        maxX: mapRestrict.X.MAX - PIN_MAIN.width / 2,
-        minY: mapRestrict.Y.MIN - PIN_MAIN.height - PIN_MAIN.offsetPin,
-        maxY: mapRestrict.Y.MAX - PIN_MAIN.height - PIN_MAIN.offsetPin
+        minX: MapRestrict.X.MIN - PIN_MAIN.width / 2,
+        maxX: MapRestrict.X.MAX - PIN_MAIN.width / 2,
+        minY: MapRestrict.Y.MIN - PIN_MAIN.height - PIN_MAIN.offsetPin,
+        maxY: MapRestrict.Y.MAX - PIN_MAIN.height - PIN_MAIN.offsetPin
       };
 
       if (mainPinSet.x >= MapField.minX && mainPinSet.x <= MapField.maxX) {
